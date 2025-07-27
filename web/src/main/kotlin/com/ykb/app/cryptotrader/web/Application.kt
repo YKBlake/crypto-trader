@@ -1,4 +1,4 @@
-package com.ykb.app
+package com.ykb.app.cryptotrader.web
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

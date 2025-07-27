@@ -23,6 +23,7 @@
 	</developers>
 	<modules>
 		<module>web</module>
+		<module>library</module>
 	</modules>
 	<scm>
 		<connection/>
