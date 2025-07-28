@@ -16,6 +16,7 @@
         <module>auth</module>
         <module>data</module>
         <module>utils</module>
+        <module>domain</module>
     </modules>
 
 </project>

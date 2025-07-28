@@ -15,6 +15,7 @@
     <modules>
         <module>data-auth</module>
         <module>data-base</module>
+        <module>data-domain</module>
     </modules>
 
 </project>

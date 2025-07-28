@@ -1,11 +1,11 @@
-package com.ykb.app.cryptotrader.web
+package com.ykb.app.cryptotrader.trader
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class Application
+class TraderApplication
 
 fun main(args: Array<String>) {
-    runApplication<Application>(*args)
+    runApplication<TraderApplication>(*args)
 }

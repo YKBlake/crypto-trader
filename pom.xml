@@ -24,6 +24,7 @@
 	<modules>
 		<module>web</module>
 		<module>library</module>
+		<module>trader</module>
 	</modules>
 	<scm>
 		<connection/>

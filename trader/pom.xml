@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.ykb.app</groupId>
-        <artifactId>data</artifactId>
+        <artifactId>crypto-trader</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>data-base</artifactId>
+    <artifactId>trader</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
@@ -19,10 +19,13 @@
     </properties>
 
     <dependencies>
+        <!-- Spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+
+        <!-- Kotlin -->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit5</artifactId>
@@ -41,8 +44,10 @@
             <version>2.2.0</version>
         </dependency>
     </dependencies>
+
     <build>
-        <sourceDirectory>src/main/kotlin</sourceDirectory>
+        <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+        <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>

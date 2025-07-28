@@ -6,11 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="data-base" />
         <module name="web" />
         <module name="auth" />
         <module name="data-auth" />
         <module name="utils" />
+        <module name="domain" />
+        <module name="trader" />
+        <module name="data-base" />
+        <module name="data-domain" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -25,7 +28,10 @@
       <module name="data" options="" />
       <module name="data-auth" options="-parameters" />
       <module name="data-base" options="-parameters" />
+      <module name="data-domain" options="-parameters" />
+      <module name="domain" options="-parameters" />
       <module name="library" options="" />
+      <module name="trader" options="-parameters" />
       <module name="utils" options="-parameters" />
       <module name="web" options="-parameters" />
     </option>
