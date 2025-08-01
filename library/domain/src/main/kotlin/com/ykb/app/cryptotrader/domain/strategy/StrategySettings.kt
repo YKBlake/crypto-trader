@@ -1,7 +1,13 @@
 package com.ykb.app.cryptotrader.domain.strategy
 
-interface StrategySettings {
+abstract class StrategySettings(params: Map<String, String>) {
 
-    fun toJsonString() : String
+    init {
+        init(params)
+    }
+
+    abstract fun init(params: Map<String, String>)
+
+    abstract fun toJsonString(): String
 
 }
