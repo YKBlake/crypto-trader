@@ -21,6 +21,11 @@
     <dependencies>
         <dependency>
             <groupId>com.ykb.app</groupId>
+            <artifactId>data-auth</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ykb.app</groupId>
             <artifactId>data-base</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

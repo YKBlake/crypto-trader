@@ -1,17 +1,20 @@
 package com.ykb.app.cryptotrader.data.domain.model
 
+import com.ykb.app.cryptotrader.data.auth.model.User
+import com.ykb.app.cryptotrader.data.base.entity.BaseIdEntity
 import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 
 @Entity
 @Table(name = "TRADE_BOT")
-class TradeBot {
+class TradeBot(
+    @ManyToOne
+    @JoinColumn(name = "STRATEGY_ID", nullable = false)
+    private val strategy: Strategy,
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0L
-
-}
+    @ManyToOne
+    @JoinColumn(name = "USER_ID", nullable = false)
+    private val user: User
+) : BaseIdEntity()
