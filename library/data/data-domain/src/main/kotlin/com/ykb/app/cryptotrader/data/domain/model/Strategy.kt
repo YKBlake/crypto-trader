@@ -1,7 +1,7 @@
 package com.ykb.app.cryptotrader.data.domain.model
 
 import com.ykb.app.cryptotrader.data.base.entity.BaseIdEntity
-import com.ykb.app.cryptotrader.domain.enums.StrategyNames
+import com.ykb.app.cryptotrader.utils.enums.StrategyNames
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType

@@ -6,17 +6,22 @@
     <parent>
         <groupId>com.ykb.app</groupId>
         <artifactId>crypto-trader</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>app-v0.1</version>
     </parent>
 
     <artifactId>library</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>app-v0.1</version>
     <packaging>pom</packaging>
+
+    <properties>
+    </properties>
+
     <modules>
         <module>auth</module>
         <module>data</module>
         <module>utils</module>
         <module>domain</module>
+        <module>cloud</module>
     </modules>
 
 </project>

@@ -3,7 +3,7 @@ package com.ykb.app.cryptotrader.domain.services
 import com.ykb.app.cryptotrader.data.auth.model.User
 import com.ykb.app.cryptotrader.data.domain.dao.TradeBotDao
 import com.ykb.app.cryptotrader.data.domain.model.TradeBot
-import com.ykb.app.cryptotrader.domain.enums.StrategyNames
+import com.ykb.app.cryptotrader.utils.enums.StrategyNames
 import org.springframework.stereotype.Service
 
 @Service
@@ -12,10 +12,14 @@ class TradeBotManager(
     private val tradeBotDao: TradeBotDao
 ) {
 
-    fun create(user: User, strategyName: StrategyNames, strategyParams: Map<String, Any>) {
+    fun doTradeBotExist(id: Int): Boolean {
+        return tradeBotDao.existsById(id)
+    }
+
+    fun create(user: User, strategyName: StrategyNames, strategyParams: Map<String, Any>): TradeBot {
         val strategy = strategyOperator.loadStrategy(strategyName, strategyParams)
         val entity = TradeBot(strategy, user)
-        tradeBotDao.save(entity)
+        return tradeBotDao.save(entity)
     }
 
     fun delete(id: Int) {

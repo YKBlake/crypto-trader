@@ -1,6 +1,6 @@
 package com.ykb.app.cryptotrader.data.domain.model
 
-import com.ykb.app.cryptotrader.domain.enums.AssetSourceType
+import com.ykb.app.cryptotrader.utils.enums.AssetSourceType
 import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
 import jakarta.persistence.EmbeddedId

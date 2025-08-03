@@ -8,12 +8,15 @@
 		<version>3.5.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.ykb.app</groupId>
 	<artifactId>crypto-trader</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>app-v0.1</version>
+
 	<packaging>pom</packaging>
 	<name>crypto-trader</name>
 	<description>Crypto trader bot application trading on Binance</description>
+
 	<url/>
 	<licenses>
 		<license/>
@@ -21,20 +24,53 @@
 	<developers>
 		<developer/>
 	</developers>
-	<modules>
-		<module>web</module>
-		<module>library</module>
-		<module>trader</module>
-	</modules>
 	<scm>
 		<connection/>
 		<developerConnection/>
 		<tag/>
 		<url/>
 	</scm>
+
+	<modules>
+		<module>web</module>
+		<module>library</module>
+		<module>trader</module>
+	</modules>
+
 	<properties>
 		<java.version>21</java.version>
-		<kotlin.version>1.9.25</kotlin.version>
+		<kotlin.version>2.2.0</kotlin.version>
+		<jwt.version>0.11.5</jwt.version>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!--    Spring    -->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>2023.0.2</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!--    Jwt    -->
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-jackson</artifactId>
+				<version>${jwt.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-impl</artifactId>
+				<version>${jwt.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-api</artifactId>
+				<version>${jwt.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 </project>

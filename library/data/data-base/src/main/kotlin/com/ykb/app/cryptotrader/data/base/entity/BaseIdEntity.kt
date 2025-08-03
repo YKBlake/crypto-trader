@@ -10,10 +10,10 @@ abstract class BaseIdEntity : BaseEntity() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected val id: Int = 0
+    private var id: Int? = null
 
     fun getId(): Int {
-        return id
+        return id!!
     }
 
 }

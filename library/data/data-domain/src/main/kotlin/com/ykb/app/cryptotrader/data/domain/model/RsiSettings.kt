@@ -1,6 +1,6 @@
 package com.ykb.app.cryptotrader.data.domain.model
 
-import com.ykb.app.cryptotrader.domain.enums.AssetSourceType
+import com.ykb.app.cryptotrader.utils.enums.AssetSourceType
 import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
 import jakarta.persistence.EmbeddedId
@@ -14,7 +14,7 @@ import jakarta.persistence.Table
 class RsiSettings(
     length: Int,
     source: AssetSourceType,
-    smoothingMaLength: Int,
+    smoothingMaLength: Int
 ) : StrategySettings() {
 
     companion object {

@@ -19,8 +19,8 @@ open class Dao<T : Any, ID : Any>(
         repo.deleteAll()
     }
 
-    fun save(entity: T) {
-        repo.save(entity)
+    fun save(entity: T): T {
+        return repo.save(entity)
     }
 
     fun saveAll(list: List<T>) {

@@ -1,7 +1,7 @@
 package com.ykb.app.cryptotrader.data.domain.repo
 
 import com.ykb.app.cryptotrader.data.domain.model.RsiSettings
-import com.ykb.app.cryptotrader.domain.enums.AssetSourceType
+import com.ykb.app.cryptotrader.utils.enums.AssetSourceType
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository

@@ -6,34 +6,38 @@
     <parent>
         <groupId>com.ykb.app</groupId>
         <artifactId>library</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>app-v0.1</version>
     </parent>
 
     <artifactId>domain</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>app-v0.1</version>
 
     <properties>
-        <app.version>0.0.1-SNAPSHOT</app.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
     </properties>
 
     <dependencies>
+        <!--    App    -->
         <dependency>
             <groupId>com.ykb.app</groupId>
             <artifactId>data-domain</artifactId>
-            <version>${app.version}</version>
+            <version>app-v0.1</version>
         </dependency>
         <dependency>
             <groupId>com.ykb.app</groupId>
             <artifactId>data-auth</artifactId>
-            <version>${app.version}</version>
+            <version>app-v0.1</version>
         </dependency>
+
+        <!--    Spring    -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
+
+        <!--    Kotlin    -->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit5</artifactId>

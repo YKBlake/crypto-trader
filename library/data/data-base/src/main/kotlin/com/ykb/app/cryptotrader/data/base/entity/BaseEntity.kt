@@ -11,15 +11,15 @@ abstract class BaseEntity {
 
     @Column(name = "CREATION_TIME")
     @Temporal(TemporalType.TIMESTAMP)
-    protected val creationTime = Date()
+    private val creationTime = Date()
 
     @Column(name = "UPDATE_TIME")
     @Temporal(TemporalType.TIMESTAMP)
-    protected var updateTime: Date? = null
+    private var updateTime: Date? = null
 
     @Column(name = "INACTIVATION_TIME")
     @Temporal(TemporalType.TIMESTAMP)
-    protected var inactivationTime: Date? = null
+    private var inactivationTime: Date? = null
 
     fun getCreationTime(): Date {
         return creationTime

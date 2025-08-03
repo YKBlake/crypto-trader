@@ -7,8 +7,8 @@ import com.ykb.app.cryptotrader.data.domain.model.MacdSettings
 import com.ykb.app.cryptotrader.data.domain.model.RsiSettings
 import com.ykb.app.cryptotrader.data.domain.model.Strategy
 import com.ykb.app.cryptotrader.data.domain.model.StrategySettings
-import com.ykb.app.cryptotrader.domain.enums.AssetSourceType
-import com.ykb.app.cryptotrader.domain.enums.StrategyNames
+import com.ykb.app.cryptotrader.utils.enums.AssetSourceType
+import com.ykb.app.cryptotrader.utils.enums.StrategyNames
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 

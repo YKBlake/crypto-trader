@@ -4,7 +4,7 @@ import com.ykb.app.cryptotrader.data.base.Dao
 import com.ykb.app.cryptotrader.data.domain.model.Strategy
 import com.ykb.app.cryptotrader.data.domain.model.StrategySettings
 import com.ykb.app.cryptotrader.data.domain.repo.StrategyRepo
-import com.ykb.app.cryptotrader.domain.enums.StrategyNames
+import com.ykb.app.cryptotrader.utils.enums.StrategyNames
 import org.springframework.stereotype.Component
 
 @Component
