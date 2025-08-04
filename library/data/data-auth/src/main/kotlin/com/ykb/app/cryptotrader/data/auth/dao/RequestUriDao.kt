@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service
 
 @Service
 class RequestUriDao(repo: RequestUriRepo) : Dao<RequestUri, RequestUri.Key>(repo) {
-    fun findByMethodAndSecure(httpMethod: HttpMethod, isSecure: Boolean): List<RequestUri> {
-        return (repo as RequestUriRepo).findByMethodAndSecure(httpMethod.name(), isSecure)
+
+    fun findByServiceName(serviceName: String): List<RequestUri> {
+        return (repo as RequestUriRepo).findByServiceName(serviceName)
     }
 
-    fun findByUriAndMethod(uri: String, httpMethod: HttpMethod): List<RequestUri> {
-        return (repo as RequestUriRepo).findByUriAndMethod(uri, httpMethod.name())
+    fun findByUriAndMethodAndServiceName(uri: String, httpMethod: HttpMethod, serviceName: String): List<RequestUri> {
+        return (repo as RequestUriRepo).findByUriAndMethodAndServiceName(uri, httpMethod.name(), serviceName)
     }
+
 }

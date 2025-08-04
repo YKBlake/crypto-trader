@@ -23,6 +23,7 @@
         <module>domain</module>
         <module>cloud</module>
         <module>domain/domain-dto</module>
+        <module>data/data-core</module>
     </modules>
 
 </project>

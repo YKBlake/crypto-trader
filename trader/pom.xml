@@ -19,6 +19,18 @@
     </properties>
 
     <dependencies>
+        <!-- App -->
+        <dependency>
+            <groupId>com.ykb.app</groupId>
+            <artifactId>domain</artifactId>
+            <version>app-v0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ykb.app</groupId>
+            <artifactId>domain-dto</artifactId>
+            <version>app-v0.1</version>
+        </dependency>
+
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -78,7 +90,6 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
-
     </dependencies>
 
     <build>

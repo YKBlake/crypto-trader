@@ -8,6 +8,7 @@ import java.util.*
 @Entity
 @Table(name = "REQUEST_URI")
 class RequestUri(
+    serviceName: String,
     uri: String,
     httpMethod: HttpMethod,
 
@@ -19,15 +20,21 @@ class RequestUri(
 ) {
 
     @EmbeddedId
-    private val id: Key = Key(uri, httpMethod.name())
+    private val id: Key = Key(serviceName, uri, httpMethod.name())
 
     @Embeddable
     data class Key(
+        @Column(name = "SERVICE_NAME", nullable = false)
+        val serviceName: String,
         @Column(name = "URI", nullable = false)
         val uri: String,
         @Column(name = "HTTP_METHOD", nullable = false)
         val httpMethod: String
     ): Serializable
+
+    fun getServiceName(): String {
+        return id.serviceName
+    }
 
     fun getUri(): String {
         return id.uri

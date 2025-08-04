@@ -9,18 +9,19 @@ import org.springframework.stereotype.Service
 @Service
 class UriSecurityManager(
     private val dao: RequestUriDao,
-    @Value("\${app.property.auth.url.login}") private val loginUri: String
+    @Value("\${app.property.auth.url.login}") private val loginUri: String,
+    @Value("\${app.properties.microservice.name}") private val serviceName: String
 ) {
     fun getUris(): List<RequestUri> {
-        return dao.findAll()
+        return dao.findByServiceName(serviceName)
     }
 
     fun doUriExist(uri: String, method: HttpMethod): Boolean {
-        return dao.findByUriAndMethod(uri, method).isNotEmpty()
+        return dao.findByUriAndMethodAndServiceName(uri, method, serviceName).isNotEmpty()
     }
 
     fun isView(uri: String, method: HttpMethod): Boolean {
-        val list = dao.findByUriAndMethod(uri, method)
+        val list = dao.findByUriAndMethodAndServiceName(uri, method, serviceName)
         return list.isNotEmpty() && list[0].isView()
     }
 

@@ -5,13 +5,11 @@ import com.ykb.app.cryptotrader.domaindto.base.Dto
 import com.ykb.app.cryptotrader.domaindto.base.FaultDto
 
 class BotCreateResponseDto(
-    tradeBot: TradeBot?,
+    val tradeBotId: Int?,
     faultDto: FaultDto?
 ) : Dto(faultDto) {
 
-    constructor(tradeBot: TradeBot) : this(tradeBot, null)
+    constructor(tradeBot: TradeBot) : this(tradeBot.getId(), null)
     constructor(faultDto: FaultDto) : this(null, faultDto)
-
-    val tradeBotId = tradeBot?.getId()
 
 }

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository
 @Repository
 interface RequestUriRepo : JpaRepository<RequestUri, RequestUri.Key> {
 
-    @Query("SELECT r FROM RequestUri r WHERE r.id.httpMethod = :httpMethod AND r.isSecure = :isSecure ")
-    fun findByMethodAndSecure(httpMethod: String, isSecure: Boolean): List<RequestUri>
+    @Query("SELECT r FROM RequestUri r WHERE r.id.serviceName = :serviceName ")
+    fun findByServiceName(serviceName: String): List<RequestUri>
 
-    @Query("SELECT r FROM RequestUri r WHERE r.id.uri = :uri AND r.id.httpMethod = :httpMethod ")
-    fun findByUriAndMethod(uri: String, httpMethod: String): List<RequestUri>
+    @Query("SELECT r FROM RequestUri r WHERE r.id.uri = :uri AND r.id.httpMethod = :httpMethod AND r.id.serviceName = :serviceName ")
+    fun findByUriAndMethodAndServiceName(uri: String, httpMethod: String, serviceName: String): List<RequestUri>
 
 }

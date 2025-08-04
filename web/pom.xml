@@ -22,7 +22,12 @@
         <!--    App    -->
         <dependency>
             <groupId>com.ykb.app</groupId>
-            <artifactId>domain</artifactId>
+            <artifactId>auth</artifactId>
+            <version>app-v0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ykb.app</groupId>
+            <artifactId>cloud</artifactId>
             <version>app-v0.1</version>
         </dependency>
         <dependency>

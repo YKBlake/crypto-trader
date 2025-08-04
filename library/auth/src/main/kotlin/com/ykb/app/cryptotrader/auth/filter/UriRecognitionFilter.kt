@@ -6,16 +6,12 @@ import com.ykb.app.cryptotrader.auth.service.UriSecurityManager
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
-import org.springframework.security.web.AuthenticationEntryPoint
-import org.springframework.security.web.savedrequest.RequestCache
 import org.springframework.stereotype.Component
 
 @Component
 class UriRecognitionFilter(
-    private val uriSecurityManager: UriSecurityManager,
-    authenticationEntryPoint: AuthenticationEntryPoint,
-    requestCache: RequestCache
-) : HeaderFilter(authenticationEntryPoint, requestCache) {
+    private val uriSecurityManager: UriSecurityManager
+) : HeaderFilter() {
     override fun doFilter(request: HttpServletRequest, response: HttpServletResponse, chain: FilterChain) {
         try {
             if (!uriSecurityManager.doUriExist(request.requestURI, HttpMethod.valueOf(request.method)))

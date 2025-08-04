@@ -12,9 +12,7 @@ import jakarta.servlet.http.HttpServletResponse
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
-import org.springframework.security.web.savedrequest.RequestCache
 import org.springframework.stereotype.Component
 
 @Component
@@ -22,10 +20,8 @@ class JwtFilter(
     private val userManager: UserManager,
     private val jwtManager: JwtManager,
     private val uriSecurityManager: UriSecurityManager,
-    authenticationEntryPoint: AuthenticationEntryPoint,
-    requestCache: RequestCache,
     @Value("\${app.property.auth.url.login}") private val loginUri: String
-) : HeaderFilter(authenticationEntryPoint, requestCache) {
+) : HeaderFilter() {
 
     private val log: Logger = Logger.getLogger(JwtFilter::class)
     private val authCookieName = "Authorization"
