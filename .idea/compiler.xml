@@ -15,6 +15,7 @@
         <module name="trader" />
         <module name="data-base" />
         <module name="data-domain" />
+        <module name="domain-dto" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -32,6 +33,7 @@
       <module name="data-base" options="-parameters" />
       <module name="data-domain" options="-parameters" />
       <module name="domain" options="-parameters" />
+      <module name="domain-dto" options="-parameters" />
       <module name="library" options="" />
       <module name="trader" options="-parameters" />
       <module name="utils" options="-parameters" />

@@ -24,7 +24,11 @@
             <groupId>com.ykb.app</groupId>
             <artifactId>domain</artifactId>
             <version>app-v0.1</version>
-            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ykb.app</groupId>
+            <artifactId>domain-dto</artifactId>
+            <version>app-v0.1</version>
         </dependency>
 
         <!--    Spring    -->
