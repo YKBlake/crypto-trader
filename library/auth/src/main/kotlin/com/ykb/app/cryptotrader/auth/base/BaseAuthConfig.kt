@@ -1,4 +1,4 @@
-package com.ykb.app.cryptotrader.auth.config
+package com.ykb.app.cryptotrader.auth.base
 
 import com.ykb.app.cryptotrader.auth.filter.JwtFilter
 import com.ykb.app.cryptotrader.auth.filter.UriRecognitionFilter

@@ -1,7 +1,7 @@
 package com.ykb.app.cryptotrader.auth.filter
 
 import org.springframework.http.HttpMethod
-import com.ykb.app.cryptotrader.utils.exceptions.NotFoundException
+import com.ykb.app.cryptotrader.utils.exceptions.auth.NotFoundException
 import com.ykb.app.cryptotrader.auth.service.UriSecurityManager
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest

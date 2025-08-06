@@ -1,11 +1,18 @@
 package com.ykb.app.cryptotrader.utils.logger
 
+import com.ykb.app.cryptotrader.utils.logger.data.ErrorLog
+import com.ykb.app.cryptotrader.utils.logger.data.ErrorLogRepo
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 import kotlin.reflect.KClass
 
 class Logger(
     clazz: KClass<*>
 ) {
+
+    @Autowired
+    private lateinit var errorLogRepo: ErrorLogRepo
+
     companion object {
         fun getLogger(clazz: KClass<*>): Logger {
             return Logger(clazz)
@@ -14,20 +21,22 @@ class Logger(
 
     private val log = LoggerFactory.getLogger(clazz.java)
 
-    fun info(str: String) {
-        log.info(str)
+    fun info(msg: String) {
+        log.info(msg)
     }
 
-    fun error(str: String) {
-        log.error(str)
+    fun error(msg: String) {
+        log.error(msg)
     }
 
-    fun error(str: String, ex: Throwable) {
-        log.error(str, ex)
+    fun error(msg: String, t: Throwable) {
+        log.error(msg, t)
+        errorLogRepo.save(ErrorLog(t, msg))
     }
 
-    fun error(ex: Throwable) {
-        log.error(ex.message, ex)
+    fun error(t: Throwable) {
+        log.error(t.message, t)
+        errorLogRepo.save(ErrorLog(t))
     }
 
 }

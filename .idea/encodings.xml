@@ -4,11 +4,13 @@
     <file url="file://$PROJECT_DIR$/common/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/auth/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/auth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/binance/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/cloud/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/data/data-auth/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/data/data-auth/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/data/data-base/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/data/data-base/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/library/data/data-core/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/data/data-domain/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/data/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/library/data/src/main/kotlin" charset="UTF-8" />

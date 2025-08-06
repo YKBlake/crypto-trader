@@ -1,6 +1,6 @@
 package com.ykb.app.cryptotrader.auth.service
 
-import com.ykb.app.cryptotrader.utils.exceptions.NotFoundException
+import com.ykb.app.cryptotrader.utils.exceptions.auth.NotFoundException
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.HttpStatus
@@ -38,11 +38,6 @@ class AuthExceptionHandler : AuthenticationEntryPoint/*, AccessDeniedHandlerImpl
         return when(authException) {
             is NotFoundException
                 -> HttpStatus.NOT_FOUND.value()
-            is AccountExpiredException,
-            is LockedException,
-            is DisabledException,
-            is CredentialsExpiredException
-                -> HttpStatus.FORBIDDEN.value()
             is AuthenticationCredentialsNotFoundException,
             is CompromisedPasswordException,
             is CookieTheftException,

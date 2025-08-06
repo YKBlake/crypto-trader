@@ -1,8 +1,8 @@
 package com.ykb.app.cryptotrader.cloud
 
-import com.ykb.app.cryptotrader.domaindto.request.BotCreateRequestDto
-import com.ykb.app.cryptotrader.domaindto.response.BotCreateResponseDto
-import com.ykb.app.cryptotrader.domaindto.response.EmptyResponseDto
+import com.ykb.app.cryptotrader.domaindto.CreateTradeBotParamsDto
+import com.ykb.app.cryptotrader.domaindto.TradeBotIdDto
+import com.ykb.app.cryptotrader.domaindto.base.Dto
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping
 interface MsTraderClient {
 
     @PutMapping("/api/ms-client/create-bot")
-    fun createTradeBot(requestDto: BotCreateRequestDto): ResponseEntity<BotCreateResponseDto>
+    fun createTradeBot(key: String, requestDto: CreateTradeBotParamsDto): ResponseEntity<TradeBotIdDto>
 
     @PostMapping("/api/ms-client/terminate-bot")
-    fun terminateTradeBot(id: Int): ResponseEntity<EmptyResponseDto>
+    fun terminateTradeBot(key: String, id: Int): ResponseEntity<out Dto>
 
 }

@@ -12,10 +12,10 @@ import javax.crypto.spec.SecretKeySpec
 
 @Component
 class JwtManager(
-    @Value("\${app.property.jwt.refresh.secret}") jwtRefreshSecret: String,
-    @Value("\${app.property.jwt.access.secret}") jwtAccessSecret: String,
-    @Value("\${app.property.jwt.refresh.expireTime}") private val refreshExpireTime: Long,
-    @Value("\${app.property.jwt.access.expireTime}") private val accessExpireTime: Long,
+    @Value($$"${app.property.jwt.refresh.secret}") jwtRefreshSecret: String,
+    @Value($$"${app.property.jwt.access.secret}") jwtAccessSecret: String,
+    @Value($$"${app.property.jwt.refresh.expireTime}") private val refreshExpireTime: Long,
+    @Value($$"${app.property.jwt.access.expireTime}") private val accessExpireTime: Long,
     private val userManager: UserManager
 ) {
 

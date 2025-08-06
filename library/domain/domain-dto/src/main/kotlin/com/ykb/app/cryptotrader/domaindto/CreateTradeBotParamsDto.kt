@@ -1,14 +1,14 @@
-package com.ykb.app.cryptotrader.domaindto.request
+package com.ykb.app.cryptotrader.domaindto
 
 import com.ykb.app.cryptotrader.domaindto.base.Dto
 import com.ykb.app.cryptotrader.utils.enums.AssetSourceType
 import com.ykb.app.cryptotrader.utils.enums.StrategyNames
 
-data class BotCreateRequestDto(
+data class CreateTradeBotParamsDto(
     val strategyName: StrategyNames,
     val rsiSettings: RsiSettings?,
     val macdSettings: MacdSettings?
-): Dto() {
+) : Dto {
 
     data class MacdSettings(
         val shortMaLength: Int?,

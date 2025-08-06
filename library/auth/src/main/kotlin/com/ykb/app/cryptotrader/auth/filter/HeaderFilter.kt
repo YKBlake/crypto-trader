@@ -1,6 +1,6 @@
 package com.ykb.app.cryptotrader.auth.filter
 
-import com.ykb.app.cryptotrader.utils.exceptions.InternalServerErrorException
+import com.ykb.app.cryptotrader.utils.exceptions.auth.InternalServerErrorException
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpFilter
 import jakarta.servlet.http.HttpServletRequest

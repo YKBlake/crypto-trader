@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service
 @Service
 class UriSecurityManager(
     private val dao: RequestUriDao,
-    @Value("\${app.property.auth.url.login}") private val loginUri: String,
-    @Value("\${app.properties.microservice.name}") private val serviceName: String
+    @Value($$"${app.property.auth.url.login}") private val loginUri: String,
+    @Value($$"${app.properties.microservice.name}") private val serviceName: String
 ) {
     fun getUris(): List<RequestUri> {
         return dao.findByServiceName(serviceName)

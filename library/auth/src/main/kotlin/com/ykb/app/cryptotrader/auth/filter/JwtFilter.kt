@@ -20,7 +20,7 @@ class JwtFilter(
     private val userManager: UserManager,
     private val jwtManager: JwtManager,
     private val uriSecurityManager: UriSecurityManager,
-    @Value("\${app.property.auth.url.login}") private val loginUri: String
+    @Value($$"${app.property.auth.url.login}") private val loginUri: String
 ) : HeaderFilter() {
 
     private val log: Logger = Logger.getLogger(JwtFilter::class)

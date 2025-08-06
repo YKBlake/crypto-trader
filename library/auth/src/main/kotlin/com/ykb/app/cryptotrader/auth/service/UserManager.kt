@@ -27,8 +27,8 @@ class UserManager(
     private val dao: UserDao,
     private var users: MutableList<User> = dao.findAll().toMutableList(),
     private val passEncoder: PasswordEncoder,
-    @Value("\${app.property.user.expireTime}") private val expireTime: Long,
-    @Value("\${app.property.user.credentialsExpireTime}") private val credentialsExpireTime: Long
+    @Value($$"${app.property.user.expireTime}") private val expireTime: Long,
+    @Value($$"${app.property.user.credentialsExpireTime}") private val credentialsExpireTime: Long
 ) : UserDetailsManager, UserDetailsPasswordService {
 
     private val logger: Log = LogFactory.getLog(javaClass)
