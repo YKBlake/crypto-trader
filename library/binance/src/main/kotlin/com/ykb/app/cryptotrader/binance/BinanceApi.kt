@@ -24,46 +24,46 @@ class BinanceApi(private val credentials: Credentials?) {
 
     fun buyLimit(symbol: String, quantity: String, price: String): String {
         val params = mapOf(
-            "symbol" to symbol,
-            "side" to "BUY",
-            "type" to "LIMIT",
-            "timeInForce" to "GTC",
-            "quantity" to quantity,
-            "price" to price
+            ApiParams.SYMBOL to symbol,
+            ApiParams.SIDE to "BUY",
+            ApiParams.TYPE to "LIMIT",
+            ApiParams.TIME_IN_FORCE to "GTC",
+            ApiParams.QUANTITY to quantity,
+            ApiParams.PRICE to price
         )
         return client.createTrade().newOrder(params)
     }
 
     fun sellLimit(symbol: String, quantity: String, price: String): String {
         val params = mapOf(
-            "symbol" to symbol,
-            "side" to "SELL",
-            "type" to "LIMIT",
-            "timeInForce" to "GTC",
-            "quantity" to quantity,
-            "price" to price
+            ApiParams.SYMBOL to symbol,
+            ApiParams.SIDE to "SELL",
+            ApiParams.TYPE to "LIMIT",
+            ApiParams.TIME_IN_FORCE to "GTC",
+            ApiParams.QUANTITY to quantity,
+            ApiParams.PRICE to price
         )
         return client.createTrade().newOrder(params)
     }
 
     fun stopLossOrder(symbol: String, quantity: String, stopPrice: String, price: String): String {
         val params = mapOf(
-            "symbol" to symbol,
-            "side" to "SELL",
-            "type" to "STOP_LOSS_LIMIT",
-            "timeInForce" to "GTC",
-            "quantity" to quantity,
-            "price" to price,
-            "stopPrice" to stopPrice
+            ApiParams.SYMBOL to symbol,
+            ApiParams.SIDE to "SELL",
+            ApiParams.TYPE to "STOP_LOSS_LIMIT",
+            ApiParams.TIME_IN_FORCE to "GTC",
+            ApiParams.QUANTITY to quantity,
+            ApiParams.PRICE to price,
+            ApiParams.STOP_PRICE to stopPrice
         )
         return client.createTrade().newOrder(params)
     }
 
     fun getKlines(symbol: String, interval: String, limit: Int = 500): List<KlineDto> {
         val params = mapOf(
-            "symbol" to symbol,
-            "interval" to interval,
-            "limit" to limit.toString()
+            ApiParams.SYMBOL to symbol,
+            ApiParams.INTERVAL to interval,
+            ApiParams.LIMIT to limit.toString()
         )
         val klinesJson = client.createMarket().klines(params)
 
