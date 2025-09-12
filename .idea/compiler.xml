@@ -7,12 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="cloud" />
-        <module name="web" />
         <module name="auth" />
         <module name="data-auth" />
         <module name="utils" />
         <module name="domain" />
-        <module name="trader" />
         <module name="data-base" />
         <module name="data-domain" />
         <module name="data-core" />
@@ -22,6 +20,9 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="common" target="21" />
+      <module name="library" target="1.5" />
+      <module name="trader" target="21" />
+      <module name="web" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
