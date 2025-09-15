@@ -2,27 +2,37 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="cloud" />
+        <module name="data" />
         <module name="auth" />
-        <module name="data-auth" />
         <module name="utils" />
         <module name="domain" />
-        <module name="data-base" />
-        <module name="data-domain" />
-        <module name="data-core" />
-        <module name="binance" />
-        <module name="domain-dto" />
+      </profile>
+      <profile name="Annotation profile for crypto-trader" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+        </processorPath>
+        <module name="web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="binance" target="21" />
+      <module name="cloud" target="21" />
       <module name="common" target="21" />
+      <module name="data-auth" target="21" />
+      <module name="data-base" target="21" />
+      <module name="data-core" target="21" />
+      <module name="data-domain" target="21" />
+      <module name="domain-dto" target="21" />
       <module name="library" target="1.5" />
       <module name="trader" target="21" />
-      <module name="web" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -32,7 +42,7 @@
       <module name="cloud" options="-parameters" />
       <module name="common" options="-parameters" />
       <module name="crypto-trader" options="" />
-      <module name="data" options="" />
+      <module name="data" options="-parameters" />
       <module name="data-auth" options="-parameters" />
       <module name="data-base" options="-parameters" />
       <module name="data-core" options="-parameters" />
