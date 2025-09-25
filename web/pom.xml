@@ -11,6 +11,9 @@
 	<artifactId>web</artifactId>
 
 	<properties>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>21</java.version>
 	</properties>
 
@@ -63,6 +66,11 @@
 		<dependency>
 			<groupId>com.ykb.app</groupId>
 			<artifactId>domain</artifactId>
+			<version>app-v0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ykb.app</groupId>
+			<artifactId>utils</artifactId>
 			<version>app-v0.2</version>
 		</dependency>
 	</dependencies>

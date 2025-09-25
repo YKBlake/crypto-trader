@@ -11,4 +11,8 @@ public final class UserDao extends Dao<User, Long> {
         super(repo);
     }
 
+    public boolean usernameExists(String username) {
+        return ((UserRepo) repo).usernameExists(username);
+    }
+
 }
