@@ -1,6 +1,6 @@
 package com.ykb.app.cryptotrader.web.api.rest;
 
-import com.ykb.app.cryptotrader.web.dto.BaseDto;
+import com.ykb.app.cryptotrader.auth.dto.BaseDto;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Map;

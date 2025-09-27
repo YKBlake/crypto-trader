@@ -1,8 +1,8 @@
-package com.ykb.app.cryptotrader.web.dto;
+package com.ykb.app.cryptotrader.auth.dto;
 
 import lombok.Getter;
 
-public abstract sealed class BaseDto permits FaultDto {
+public abstract class BaseDto {
 
     @Getter
     private final Fault fault;

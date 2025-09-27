@@ -1,6 +1,6 @@
-package com.ykb.app.cryptotrader.web.dto;
+package com.ykb.app.cryptotrader.auth.dto;
 
-public final class FaultDto extends BaseDto {
+public class FaultDto extends BaseDto {
 
     public FaultDto(String code, String description) {
         super(code, description);

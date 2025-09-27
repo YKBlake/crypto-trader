@@ -1,8 +1,7 @@
 package com.ykb.app.cryptotrader.web.api.rest;
 
+import com.ykb.app.cryptotrader.auth.dto.BaseDto;
 import com.ykb.app.cryptotrader.auth.service.UserOperationsService;
-import com.ykb.app.cryptotrader.web.dto.BaseDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +13,6 @@ public final class UserApi implements CrudApi {
 
     private final UserOperationsService userService;
 
-    @Autowired
     public UserApi(UserOperationsService userService) {
         this.userService=userService;
     }

@@ -2,7 +2,6 @@ package com.ykb.app.cryptotrader.auth.service;
 
 import com.ykb.app.cryptotrader.data.dao.UserDao;
 import com.ykb.app.cryptotrader.data.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsPasswordService;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,7 +19,6 @@ public class UserOperationsService implements UserDetailsService, UserDetailsPas
     private final PasswordEncoder passwordEncoder;
     private final List<User> users;
 
-    @Autowired
     public UserOperationsService(UserDao userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
