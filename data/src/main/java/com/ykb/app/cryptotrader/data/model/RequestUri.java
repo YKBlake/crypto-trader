@@ -1,10 +1,7 @@
 package com.ykb.app.cryptotrader.data.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.http.HttpMethod;
 
 import java.io.Serializable;
@@ -35,15 +32,16 @@ public class RequestUri extends BaseEntity {
 
     @Embeddable
     @AllArgsConstructor
+    @Data
     public static class Key implements Serializable {
         @Column(name = "SERVICE_NAME", nullable = false)
-        String serviceName;
+        private String serviceName;
 
         @Column(name = "URI", nullable = false)
-        String uri;
+        private String uri;
 
         @Column(name = "HTTP_METHOD", nullable = false)
-        String httpMethod;
+        private String httpMethod;
     }
 
     public void setServiceName(String serviceName) {

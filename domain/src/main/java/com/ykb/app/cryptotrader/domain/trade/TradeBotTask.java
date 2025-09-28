@@ -6,6 +6,7 @@ import com.ykb.app.cryptotrader.domain.binance.BinanceApi;
 import com.ykb.app.cryptotrader.domain.component.Logger;
 import com.ykb.app.cryptotrader.domain.trade.strategy.StrategyOperator;
 import com.ykb.app.cryptotrader.domain.trade.strategy.StrategySignal;
+import com.ykb.app.cryptotrader.utils.enums.TradeBotStatus;
 
 import java.time.Duration;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -20,6 +21,8 @@ public class TradeBotTask implements Runnable {
     private final TradeBotDao tradeBotDao;
     private final AtomicBoolean stop;
 
+    private boolean shouldWait = true;
+
     public TradeBotTask(TradeBot tradeBot, BinanceApi binanceApi, TradeBotDao tradeBotDao, AtomicBoolean stop) {
         this.tradeBot = tradeBot;
         this.binanceApi = binanceApi;
@@ -32,13 +35,27 @@ public class TradeBotTask implements Runnable {
     public void run() {
         try {
             while (!stop.get()) {
-                if (Thread.interrupted()) {
+                if (Thread.interrupted())
                     break;
+
+                switch (tradeBot.getStatus()) {
+                    case INIT -> init();
+                    case RUNNING -> running();
+                    case ENTERING_LONG -> enteringLong();
+                    case ENTERING_SHORT -> enteringShort();
+                    case IN_LONG -> inLong();
+                    case IN_SHORT -> inShort();
+                    case EXITING_LONG -> exitingLong();
+                    case EXITING_SHORT -> exitingShort();
+                    case TERMINATED -> throw new UnsupportedOperationException("Task can`t run on a terminated bot");
                 }
 
-                StrategySignal signal = strategyOperator.retrieveSignal();
-                if (signal.equals(StrategySignal.BUY))
-                    binanceApi.buy();
+                tradeBotDao.save(tradeBot);
+
+                if(!shouldWait) {
+                    shouldWait = true;
+                    continue;
+                }
 
                 Thread.sleep(Duration.ofSeconds(1));
             }
@@ -53,6 +70,44 @@ public class TradeBotTask implements Runnable {
             tradeBot.terminate();
             tradeBotDao.save(tradeBot);
         }
+    }
+
+    private void init() {
+        tradeBot.setStatus(TradeBotStatus.RUNNING);
+        shouldWait = false;
+    }
+
+    private void running() throws InterruptedException {
+        StrategySignal signal = strategyOperator.retrieveSignal();
+        // TODO
+    }
+
+    private void enteringLong() throws InterruptedException {
+        // TODO
+        tradeBot.setStatus(TradeBotStatus.IN_LONG);
+    }
+
+    private void inLong() throws InterruptedException {
+        // TODO
+    }
+
+    private void exitingLong() throws InterruptedException {
+        // TODO
+        tradeBot.setStatus(TradeBotStatus.RUNNING);
+    }
+
+    private void enteringShort() throws InterruptedException {
+        // TODO
+        tradeBot.setStatus(TradeBotStatus.IN_SHORT);
+    }
+
+    private void inShort() throws InterruptedException {
+        // TODO
+    }
+
+    private void exitingShort() throws InterruptedException {
+        // TODO
+        tradeBot.setStatus(TradeBotStatus.RUNNING);
     }
 
     public long id() {

@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 @Entity
 @Table(name = "TRADE_BOT")
 @Data
@@ -23,34 +25,34 @@ public class TradeBot extends BaseIdEntity {
     @Enumerated(EnumType.STRING)
     private TradeBotStatus status = TradeBotStatus.INIT;
 
+    @OneToMany(mappedBy = "TRADE_BOT", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TradeBotStateHistory> stateHistory;
+
     public TradeBot(User user, Strategy strategy) {
         this.user=user;
         this.strategy=strategy;
     }
 
+    public boolean isInit() {
+        return TradeBotStatus.INIT==status;
+    }
+
     public boolean isRunning() {
-        return TradeBotStatus.RUNNING==status;
+        return TradeBotStatus.isRunning(status);
     }
 
     public boolean isTerminated() {
         return TradeBotStatus.TERMINATED==status;
     }
 
-    public void start() {
-        status = TradeBotStatus.RUNNING;
-    }
-
-    public void enterTrade() {
-        status = TradeBotStatus.IN_TRADE;
-    }
-
-    public void exitTrade() {
-        start();
-    }
-
     public void terminate() {
         status = TradeBotStatus.TERMINATED;
         inactivate();
+    }
+
+    public void setStatus(TradeBotStatus status) {
+        this.status = status;
+        stateHistory.add(new TradeBotStateHistory(this, status));
     }
 
 }

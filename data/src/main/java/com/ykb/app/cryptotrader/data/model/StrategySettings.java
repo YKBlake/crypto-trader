@@ -2,6 +2,7 @@ package com.ykb.app.cryptotrader.data.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
@@ -36,12 +37,13 @@ public class StrategySettings extends BaseEntity {
 
     @Embeddable
     @AllArgsConstructor
+    @Data
     public static class Key implements Serializable {
         @Column(name = "KEY", columnDefinition = "VARCHAR(128)", nullable = false)
-        String key;
+        private String key;
 
         @Column(name = "VALUE", columnDefinition = "VARCHAR(512)", nullable = false)
-        String value;
+        private String value;
     }
 
 }
