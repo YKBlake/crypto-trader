@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-sealed class Dao<T, ID> permits AuthorityDao, ParameterDao, RequestUriDao, RoleDao, StrategySettingsDao, TradeBotDao, UserDao {
+sealed class Dao<T, ID> permits AuthorityDao, ParameterDao, RequestUriDao, RoleDao, StrategySettingsDao, TradeBotDao, UserDao, ErrorLogDao {
 
     protected final JpaRepository<T, ID> repo;
 

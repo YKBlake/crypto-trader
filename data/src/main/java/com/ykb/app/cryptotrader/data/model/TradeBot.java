@@ -2,14 +2,12 @@ package com.ykb.app.cryptotrader.data.model;
 
 import com.ykb.app.cryptotrader.utils.enums.TradeBotStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "TRADE_BOT")
 @Data
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class TradeBot extends BaseIdEntity {
 
@@ -24,6 +22,11 @@ public class TradeBot extends BaseIdEntity {
     @Column(name = "STATUS", columnDefinition = "VARCHAR(16)")
     @Enumerated(EnumType.STRING)
     private TradeBotStatus status = TradeBotStatus.INIT;
+
+    public TradeBot(User user, Strategy strategy) {
+        this.user=user;
+        this.strategy=strategy;
+    }
 
     public boolean isRunning() {
         return TradeBotStatus.RUNNING==status;
