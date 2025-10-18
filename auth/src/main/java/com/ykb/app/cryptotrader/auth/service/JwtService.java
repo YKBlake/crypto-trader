@@ -7,7 +7,8 @@ import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.SecretKey;
+import java.time.Duration;
 import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,10 +25,10 @@ public class JwtService {
         this.userService = userService;
         this.properties = properties;
         this.refreshParser = Jwts.parserBuilder()
-                .setSigningKey(properties.refreshSecret())
+                .setSigningKey(properties.refreshKey())
                 .build();
         this.accessParser = Jwts.parserBuilder()
-                .setSigningKey(properties.accessSecret())
+                .setSigningKey(properties.accessKey())
                 .build();
     }
 
@@ -41,22 +42,22 @@ public class JwtService {
 
     public JwtDto generateAuthenticationTokens(User user) {
         return new JwtDto(
-                generateJwtToken(user, properties.refreshSecret(), properties.refreshExpireTime()),
+                generateJwtToken(user, properties.refreshKey(), properties.refreshExpireDuration()),
                 generateAccessToken(user)
         );
     }
 
     public String generateAccessToken(User user) {
-        return generateJwtToken(user, properties.accessSecret(), properties.accessExpireTime());
+        return generateJwtToken(user, properties.accessKey(), properties.accessExpireDuration());
     }
 
-    private String generateJwtToken(User user, SecretKeySpec key, long expireTime) {
+    private String generateJwtToken(User user, SecretKey key, Duration expireDuration) {
         Map<String, Object> claims = new ConcurrentHashMap<>();
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + expireTime))
+                .setExpiration(Date.from(new Date().toInstant().plus(expireDuration)))
                 .signWith(key, properties.signatureAlgorithm())
                 .compact();
     }

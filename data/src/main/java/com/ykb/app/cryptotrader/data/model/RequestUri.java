@@ -24,8 +24,8 @@ public class RequestUri extends BaseEntity {
     @Setter
     private boolean isView;
 
-    public RequestUri(String serviceName, String uri, HttpMethod httpMethod, boolean isSecure, boolean isView) {
-        id = new Key(serviceName, uri, httpMethod.name());
+    public RequestUri(String uri, HttpMethod httpMethod, boolean isSecure, boolean isView) {
+        id = new Key(uri, httpMethod.name());
         this.isSecure = isSecure;
         this.isView = isView;
     }
@@ -34,22 +34,11 @@ public class RequestUri extends BaseEntity {
     @AllArgsConstructor
     @Data
     public static class Key implements Serializable {
-        @Column(name = "SERVICE_NAME", nullable = false)
-        private String serviceName;
-
         @Column(name = "URI", nullable = false)
         private String uri;
 
         @Column(name = "HTTP_METHOD", nullable = false)
         private String httpMethod;
-    }
-
-    public void setServiceName(String serviceName) {
-        id.serviceName = serviceName;
-    }
-
-    public String getServiceName() {
-        return id.serviceName;
     }
 
     public void setUri(String uri) {

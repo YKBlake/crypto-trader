@@ -1,4 +1,4 @@
-package com.ykb.app.cryptotrader.web;
+package com.ykb.app.cryptotrader.unittest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,11 +9,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication(scanBasePackages = "com.ykb.app.cryptotrader")
 @EnableJpaRepositories(basePackages = "com.ykb.app.cryptotrader.data.repo")
 @EntityScan(basePackages = "com.ykb.app.cryptotrader.data.model")
-@ConfigurationPropertiesScan
-public class Application {
+@ConfigurationPropertiesScan(basePackages = "com.ykb.app.cryptotrader")
+public class UnitTestApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(UnitTestApplication.class, args);
+    }
 
 }

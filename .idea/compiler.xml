@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="unit-test" />
         <module name="data" />
         <module name="auth" />
         <module name="utils" />
@@ -51,6 +52,7 @@
       <module name="domain-dto" options="-parameters" />
       <module name="library" options="" />
       <module name="trader" options="-parameters" />
+      <module name="unit-test" options="-parameters" />
       <module name="utils" options="-parameters" />
       <module name="web" options="-parameters" />
     </option>

@@ -1,19 +1,23 @@
 package com.ykb.app.cryptotrader.domain.trade.strategy.operation;
 
-import com.ykb.app.cryptotrader.data.model.StrategySettings;
 import com.ykb.app.cryptotrader.domain.binance.BinanceApi;
 import com.ykb.app.cryptotrader.domain.trade.strategy.StrategySignal;
+import com.ykb.app.cryptotrader.domain.trade.strategy.settings.StrategySettings;
 
-public abstract class StrategyOperation {
+public abstract class StrategyOperation<T extends StrategySettings> {
 
-    protected final StrategySettings settings;
-    protected final BinanceApi api;
+    private final T settings;
+    protected final BinanceApi binanceApi;
 
-    public StrategyOperation(StrategySettings settings, BinanceApi api) {
+    public StrategyOperation(T settings, BinanceApi binanceApi) {
         this.settings = settings;
-        this.api = api;
+        this.binanceApi = binanceApi;
     }
 
     public abstract StrategySignal execute();
+
+    protected T getSettings() {
+        return settings;
+    }
 
 }

@@ -1,28 +1,29 @@
 package com.ykb.app.cryptotrader.auth.config;
 
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 
 @ConfigurationProperties(prefix = "jwt")
 public record JwtProperties(
-        SignatureAlgorithm signatureAlgorithm,
-        SecretKeySpec refreshSecret,
-        SecretKeySpec accessSecret,
-        long refreshExpireTime,
-        long accessExpireTime
+        String refreshSecret,
+        String accessSecret,
+        Duration refreshExpireDuration,
+        Duration accessExpireDuration
 ) {
-
-    public JwtProperties(String refreshSecret, String accessSecret, String refreshExpireTime, String accessExpireTime) {
-        this(
-                SignatureAlgorithm.HS512,
-                new SecretKeySpec(refreshSecret.getBytes(StandardCharsets.UTF_8), SignatureAlgorithm.HS512.getJcaName()),
-                new SecretKeySpec(accessSecret.getBytes(StandardCharsets.UTF_8), SignatureAlgorithm.HS512.getJcaName()),
-                Long.parseLong(refreshExpireTime),
-                Long.parseLong(accessExpireTime)
-        );
+    public SignatureAlgorithm signatureAlgorithm() {
+        return SignatureAlgorithm.HS512;
     }
 
+    public SecretKey refreshKey() {
+        return Keys.hmacShaKeyFor(refreshSecret.getBytes(StandardCharsets.UTF_8));
+    }
+
+    public SecretKey accessKey() {
+        return Keys.hmacShaKeyFor(accessSecret.getBytes(StandardCharsets.UTF_8));
+    }
 }

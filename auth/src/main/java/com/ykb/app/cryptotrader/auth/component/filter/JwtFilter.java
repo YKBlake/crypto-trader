@@ -12,48 +12,66 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Arrays;
 
 @Component
-public class JwtFilter extends AbstractAuthenticationProcessingFilter {
+public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
     private final UserOperationsService userService;
     private final EndpointService endpointService;
 
     public JwtFilter(JwtService jwtService, UserOperationsService userService, EndpointService endpointService) {
-        super("");
         this.jwtService=jwtService;
         this.userService=userService;
         this.endpointService = endpointService;
     }
 
     @Override
-    protected boolean requiresAuthentication(HttpServletRequest request, HttpServletResponse response) {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        try {
+            if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+                filterChain.doFilter(request, response);
+                return;
+            }
+
+            if (requiresAuthentication(request)) {
+                Authentication auth = attemptAuthentication(request);
+
+                if (auth != null) {
+                    SecurityContextHolder.getContext().setAuthentication(auth);
+                } else {
+                    SecurityContextHolder.clearContext();
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+                    return;
+                }
+            }
+
+            filterChain.doFilter(request, response);
+        } catch (RuntimeException ex) {
+            SecurityContextHolder.clearContext();
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid or expired token");
+        }
+    }
+
+    private boolean requiresAuthentication(HttpServletRequest request) {
         var auth = SecurityContextHolder.getContext().getAuthentication();
         if(auth!=null && auth.isAuthenticated())
             return false;
         return endpointService.isAuthenticated(request.getRequestURI(), HttpMethod.valueOf(request.getMethod().toUpperCase()));
     }
 
-    @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
-        var isView = endpointService.isView(request.getRequestURI(), HttpMethod.valueOf(request.getMethod()));
+    private Authentication attemptAuthentication(HttpServletRequest request) {
+        var isView = endpointService.isView(request.getRequestURI(), HttpMethod.valueOf(request.getMethod().toUpperCase()));
         if(isView)
             return authenticateWithRefreshToken(request);
 
         return authenticateWithAccessToken(request);
-    }
-
-    @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        super.successfulAuthentication(request, response, chain, authResult);
-        chain.doFilter(request, response);
     }
 
     private Authentication authenticateWithRefreshToken(HttpServletRequest request) {
@@ -76,10 +94,13 @@ public class JwtFilter extends AbstractAuthenticationProcessingFilter {
     }
 
     private String getRefreshToken(HttpServletRequest request) {
-        Cookie token = Arrays.stream(request.getCookies())
-                .filter(c -> c.getName().equals("Authorization"))
-                .findFirst().orElse(null);
-        return token!=null ? token.getValue() : null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null) return null;
+        Cookie token = Arrays.stream(cookies)
+                .filter(c -> "Authorization".equals(c.getName()))
+                .findFirst()
+                .orElse(null);
+        return token != null ? token.getValue() : null;
     }
 
     private String getAccessToken(HttpServletRequest request) {

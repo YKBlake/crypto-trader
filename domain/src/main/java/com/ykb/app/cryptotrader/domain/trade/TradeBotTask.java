@@ -27,7 +27,7 @@ public class TradeBotTask implements Runnable {
         this.tradeBot = tradeBot;
         this.binanceApi = binanceApi;
         this.tradeBotDao = tradeBotDao;
-        this.strategyOperator = new StrategyOperator(tradeBot.getStrategy(), binanceApi);
+        this.strategyOperator = new StrategyOperator(tradeBot.getStrategyName(), tradeBot.getStrategySettings(), binanceApi);
         this.stop = stop;
     }
 

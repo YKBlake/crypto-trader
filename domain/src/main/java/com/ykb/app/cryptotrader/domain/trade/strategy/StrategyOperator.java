@@ -1,19 +1,18 @@
 package com.ykb.app.cryptotrader.domain.trade.strategy;
 
-import com.ykb.app.cryptotrader.data.model.Strategy;
-import com.ykb.app.cryptotrader.data.model.StrategySettings;
 import com.ykb.app.cryptotrader.domain.binance.BinanceApi;
 import com.ykb.app.cryptotrader.domain.trade.strategy.operation.PulseVWAPOperation;
 import com.ykb.app.cryptotrader.domain.trade.strategy.operation.StrategyOperation;
+import com.ykb.app.cryptotrader.domain.trade.strategy.settings.PulseVWAPSettings;
+import com.ykb.app.cryptotrader.utils.enums.StrategyNames;
 
 public class StrategyOperator {
 
-    private final StrategyOperation strategyOperation;
+    private final StrategyOperation<?> strategyOperation;
 
-    public StrategyOperator(Strategy strategy, BinanceApi api) {
-        StrategySettings settings = strategy.getSettings();
-        strategyOperation = switch (strategy.getName()) {
-            case PULSE_VWAP -> new PulseVWAPOperation(settings, api);
+    public StrategyOperator(StrategyNames strategyName, String jsonSettings, BinanceApi api) {
+        strategyOperation = switch (strategyName) {
+            case PULSE_VWAP -> new PulseVWAPOperation(new PulseVWAPSettings(jsonSettings), api);
         };
     }
 

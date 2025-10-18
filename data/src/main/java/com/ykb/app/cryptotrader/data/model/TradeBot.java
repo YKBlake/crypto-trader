@@ -1,5 +1,6 @@
 package com.ykb.app.cryptotrader.data.model;
 
+import com.ykb.app.cryptotrader.utils.enums.StrategyNames;
 import com.ykb.app.cryptotrader.utils.enums.TradeBotStatus;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -13,9 +14,12 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class TradeBot extends BaseIdEntity {
 
-    @ManyToOne
-    @JoinColumn(name = "STRATEGY_ID", nullable = false)
-    private Strategy strategy;
+    @Column(name = "NAME", columnDefinition = "VARCHAR(256)", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private StrategyNames strategyName;
+
+    @Column(name = "STRATEGY_SETTINGS", columnDefinition = "VARCHAR(2048)", nullable = false)
+    private String strategySettings;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
@@ -25,12 +29,13 @@ public class TradeBot extends BaseIdEntity {
     @Enumerated(EnumType.STRING)
     private TradeBotStatus status = TradeBotStatus.INIT;
 
-    @OneToMany(mappedBy = "TRADE_BOT", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "tradeBot", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TradeBotStateHistory> stateHistory;
 
-    public TradeBot(User user, Strategy strategy) {
+    public TradeBot(User user, StrategyNames strategyName, String strategySettings) {
         this.user=user;
-        this.strategy=strategy;
+        this.strategyName=strategyName;
+        this.strategySettings=strategySettings;
     }
 
     public boolean isInit() {

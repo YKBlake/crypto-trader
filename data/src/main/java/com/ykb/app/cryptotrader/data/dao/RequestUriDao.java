@@ -14,12 +14,8 @@ public final class RequestUriDao extends Dao<RequestUri, RequestUri.Key> {
         super(repo);
     }
 
-    public List<RequestUri> findByServiceName(String serviceName) {
-        return ((RequestUriRepo) repo).findByServiceName(serviceName);
-    }
-
-    public List<RequestUri> findByUriAndMethodAndServiceName(String uri, HttpMethod httpMethod, String serviceName) {
-        return ((RequestUriRepo) repo).findByUriAndMethodAndServiceName(uri, httpMethod.name(), serviceName);
+    public List<RequestUri> findByUriAndMethodAndServiceName(String uri, HttpMethod httpMethod) {
+        return ((RequestUriRepo) repo).findByUriAndMethodAndServiceName(uri, httpMethod.name());
     }
 
 }

@@ -1,11 +1,12 @@
 package com.ykb.app.cryptotrader.domain.service;
 
 import com.ykb.app.cryptotrader.data.dao.TradeBotDao;
-import com.ykb.app.cryptotrader.data.model.Strategy;
 import com.ykb.app.cryptotrader.data.model.TradeBot;
 import com.ykb.app.cryptotrader.data.model.User;
 import com.ykb.app.cryptotrader.domain.binance.BinanceApi;
 import com.ykb.app.cryptotrader.domain.trade.TradeBotTask;
+import com.ykb.app.cryptotrader.domain.trade.strategy.settings.StrategySettings;
+import com.ykb.app.cryptotrader.utils.enums.StrategyNames;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,8 +34,8 @@ public class TradeBotService {
         tradeBots.forEach(this::startBotIfNotRunning);
     }
 
-    public long create(User user, Strategy strategy) {
-        TradeBot tradeBot = new TradeBot(user, strategy);
+    public long create(User user, StrategyNames strategyName, StrategySettings strategySettings) {
+        TradeBot tradeBot = new TradeBot(user, strategyName, strategySettings.toJsonString());
         tradeBot = tradeBotDao.save(tradeBot);
         startBotIfNotRunning(tradeBot);
         return tradeBot.getId();
